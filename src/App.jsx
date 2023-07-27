@@ -26,7 +26,7 @@ export const App = () => {
 	const onDecodedChange = (event) => {
 		setDecodedText(event.target.value);
 		let globalEmojiRegex = new RegExp(EMOJI_REGEX, "g");
-		let replaced = event.target.value.replace(EMOJI_REGEX, encodeEmoji);
+		let replaced = event.target.value.replaceAll(globalEmojiRegex, encodeEmoji);
 		setEncodedText(replaced);
 	};
 
