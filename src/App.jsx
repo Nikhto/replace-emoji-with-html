@@ -7,10 +7,6 @@ export const App = () => {
 	const [encodedText, setEncodedText] = useState("");
 	const [decodedText, setDecodedText] = useState("");
 
-	React.useEffect(() => {
-		console.log(EMOJI_REGEX);
-	}, []);
-
 	const encodeEmoji = (match) => {
 		let HTMLCode = match;
 		let emojiObj = data.find((obj) => obj.unicode == match);
@@ -30,20 +26,26 @@ export const App = () => {
 		setEncodedText(replaced);
 	};
 
+	const findEmoji = (codes, rest) => {
+		if (codes.length === 0) return "";
+		let hex = codes.reduce((acc, cur) => acc + "-" + parseInt(cur).toString(16).toUpperCase(), "").slice(1);
+		let foundEmoji = data.find((obj) => obj.hexcode === hex);
+		if (!foundEmoji && !rest) return codes.reduce((acc, cur) => acc + "&#" + parseInt(cur, 16) + ";", "");
+		if (foundEmoji && !rest) return foundEmoji.unicode;
+		if (foundEmoji && rest) return foundEmoji.unicode + findEmoji(rest, []);
+		rest.unshift(...codes.slice(-1));
+		return findEmoji(codes.slice(0, -1), rest);
+	};
+
 	const decodeEmoji = (match) => {
-		// console.log(match);
-		// let emojiObj = data.find((obj) => obj.unicode === match);
-		// if (!emojiObj) return "";
-		// let hexCode = emojiObj.hexcode;
-		// let HTMLCode = hexCode.split("-").reduce((acc, cur) => acc + "&#" + parseInt(cur, 16) + ";", "");
-		// return HTMLCode;
+		let codes = match.slice(1).slice(1, -1).split(";&#");
+		return findEmoji(codes, []);
 	};
 
 	const onEncodedChange = (event) => {
-		// let hexcode = event.target.value.replace(/&#(\d+);/, decodeEmoji);
 		setEncodedText(event.target.value);
-		// let replaced = event.target.value.replace(EMOJI_REGEX, decodeEmoji);
-		// setDecodedText(event.target.value);
+		let replaced = event.target.value.replaceAll(/(&#\d+;)+/g, decodeEmoji);
+		setDecodedText(replaced);
 	};
 
 	return (
@@ -65,7 +67,7 @@ export const App = () => {
 					name="coded-text"
 					id="coded-text"
 					value={encodedText}
-					readOnly
+					// readOnly
 					rows="50"
 				/>
 			</div>
