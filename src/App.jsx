@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EMOJI_REGEX from "emojibase-regex/emoji-loose";
 import data from "emojibase-data/en/compact.json";
 import "./App.css";
@@ -6,25 +6,6 @@ import "./App.css";
 export const App = () => {
 	const [encodedText, setEncodedText] = useState("");
 	const [decodedText, setDecodedText] = useState("");
-
-	const encodeEmoji = (match) => {
-		let HTMLCode = match;
-		let emojiObj = data.find((obj) => obj.unicode == match);
-		if (emojiObj) {
-			let hexCode = emojiObj.hexcode;
-			HTMLCode = hexCode.split("-").reduce((acc, cur) => acc + "&#" + parseInt(cur, 16) + ";", "");
-		} else {
-			HTMLCode = `&#${match.codePointAt(0)};`;
-		}
-		return HTMLCode;
-	};
-
-	const onDecodedChange = (event) => {
-		setDecodedText(event.target.value);
-		let globalEmojiRegex = new RegExp(EMOJI_REGEX, "g");
-		let replaced = event.target.value.replaceAll(globalEmojiRegex, encodeEmoji);
-		setEncodedText(replaced);
-	};
 
 	const findEmoji = (codes, rest) => {
 		if (codes.length === 0) return "";
@@ -42,10 +23,35 @@ export const App = () => {
 		return findEmoji(codes, []);
 	};
 
+	useEffect(() => {
+		let replaced = encodedText.replaceAll(/(&#\d+;)+/g, decodeEmoji);
+		setDecodedText(replaced);
+	}, [encodedText]);
+
+	useEffect(() => {
+		let globalEmojiRegex = new RegExp(EMOJI_REGEX, "g");
+		let replaced = decodedText.replaceAll(globalEmojiRegex, encodeEmoji);
+		setEncodedText(replaced);
+	}, [decodedText]);
+
+	const encodeEmoji = (match) => {
+		let HTMLCode = match;
+		let emojiObj = data.find((obj) => obj.unicode == match);
+		if (emojiObj) {
+			let hexCode = emojiObj.hexcode;
+			HTMLCode = hexCode.split("-").reduce((acc, cur) => acc + "&#" + parseInt(cur, 16) + ";", "");
+		} else {
+			HTMLCode = `&#${match.codePointAt(0)};`;
+		}
+		return HTMLCode;
+	};
+
+	const onDecodedChange = (event) => {
+		setDecodedText(event.target.value);
+	};
+
 	const onEncodedChange = (event) => {
 		setEncodedText(event.target.value);
-		let replaced = event.target.value.replaceAll(/(&#\d+;)+/g, decodeEmoji);
-		setDecodedText(replaced);
 	};
 
 	return (
@@ -67,7 +73,6 @@ export const App = () => {
 					name="coded-text"
 					id="coded-text"
 					value={encodedText}
-					// readOnly
 					rows="50"
 				/>
 			</div>
