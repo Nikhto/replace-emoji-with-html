@@ -12,10 +12,14 @@ textarea {
   justify-content: center;
 }
 
-.container div {
+.container>div {
   width: 100%;
 }
 
 h2 {
   text-align: center;
+}
+
+.textContainer {
+  position: relative;
 }

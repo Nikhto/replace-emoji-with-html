@@ -1,0 +1,15 @@
+.btn-container {
+    position: absolute;
+    top: 0;
+    right: -5px;
+}
+
+.btn {
+    padding: 10px;
+    padding-bottom: 6px;
+    background-color: transparent;
+}
+
+.btn svg {
+    width: 15px;
+}

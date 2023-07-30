@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import EMOJI_REGEX from "emojibase-regex/emoji-loose";
 import data from "emojibase-data/en/compact.json";
 import "./App.css";
+import { Buttons } from "./Buttons";
 
 export const App = () => {
 	const [encodedText, setEncodedText] = useState("");
 	const [decodedText, setDecodedText] = useState("");
+
+	const decodedRef = useRef();
+	const encodedRef = useRef();
 
 	const findEmoji = (codes, rest) => {
 		if (codes.length === 0) return "";
@@ -58,23 +62,37 @@ export const App = () => {
 		<div className="container">
 			<div>
 				<h2>Текст с эмоджи</h2>
-				<textarea
-					onChange={onDecodedChange}
-					name="emoji-text"
-					id="emoji-text"
-					value={decodedText}
-					rows="50"
-				/>
+				<div className="textContainer">
+					<textarea
+						onChange={onDecodedChange}
+						ref={decodedRef}
+						name="emoji-text"
+						id="emoji-text"
+						value={decodedText}
+						rows="50"
+					/>
+					<Buttons
+						targetRef={decodedRef}
+						setTargetState={setDecodedText}
+					/>
+				</div>
 			</div>
 			<div>
 				<h2>Текст с кодами</h2>
-				<textarea
-					onChange={onEncodedChange}
-					name="coded-text"
-					id="coded-text"
-					value={encodedText}
-					rows="50"
-				/>
+				<div className="textContainer">
+					<textarea
+						onChange={onEncodedChange}
+						ref={encodedRef}
+						name="coded-text"
+						id="coded-text"
+						value={encodedText}
+						rows="50"
+					/>
+					<Buttons
+						targetRef={encodedRef}
+						setTargetState={setEncodedText}
+					/>
+				</div>
 			</div>
 		</div>
 	);
