@@ -59,41 +59,50 @@ export const App = () => {
 	};
 
 	return (
-		<div className="container">
-			<div>
-				<h2>Текст с эмоджи</h2>
-				<div className="textContainer">
-					<textarea
-						onChange={onDecodedChange}
-						ref={decodedRef}
-						name="emoji-text"
-						id="emoji-text"
-						value={decodedText}
-						rows="50"
-					/>
-					<Buttons
-						targetRef={decodedRef}
-						setTargetState={setDecodedText}
-					/>
+		<>
+			<div className="container">
+				<div>
+					<h2>Текст с эмоджи</h2>
+					<div className="textContainer">
+						<textarea
+							onChange={onDecodedChange}
+							ref={decodedRef}
+							name="emoji-text"
+							id="emoji-text"
+							value={decodedText}
+							rows="50"
+						/>
+						<Buttons
+							targetRef={decodedRef}
+							setTargetState={setDecodedText}
+						/>
+					</div>
+				</div>
+				<div>
+					<h2>Текст с кодами</h2>
+					<div className="textContainer">
+						<textarea
+							onChange={onEncodedChange}
+							ref={encodedRef}
+							name="coded-text"
+							id="coded-text"
+							value={encodedText}
+							rows="50"
+						/>
+						<Buttons
+							targetRef={encodedRef}
+							setTargetState={setEncodedText}
+						/>
+					</div>
 				</div>
 			</div>
-			<div>
-				<h2>Текст с кодами</h2>
-				<div className="textContainer">
-					<textarea
-						onChange={onEncodedChange}
-						ref={encodedRef}
-						name="coded-text"
-						id="coded-text"
-						value={encodedText}
-						rows="50"
-					/>
-					<Buttons
-						targetRef={encodedRef}
-						setTargetState={setEncodedText}
-					/>
-				</div>
+			<div className="gitlink">
+				<a
+					href="https://github.com/Nikhto/replace-emoji-with-html"
+					target="_blank">
+					Код на Github
+				</a>
 			</div>
-		</div>
+		</>
 	);
 };

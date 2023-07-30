@@ -1,6 +1,8 @@
 textarea {
   resize: none;
   width: 100%;
+  border: 1px solid #09276f6e;
+  border-radius: 8px;
 }
 
 .container {
@@ -22,4 +24,8 @@ h2 {
 
 .textContainer {
   position: relative;
+}
+
+.gitlink {
+  text-align: center;
 }
