@@ -39,15 +39,11 @@ export const App = () => {
 	}, [decodedText]);
 
 	const encodeEmoji = (match) => {
-		let HTMLCode = match;
-		let emojiObj = data.find((obj) => obj.unicode == match);
-		if (emojiObj) {
-			let hexCode = emojiObj.hexcode;
-			HTMLCode = hexCode.split("-").reduce((acc, cur) => acc + "&#" + parseInt(cur, 16) + ";", "");
-		} else {
-			HTMLCode = `&#${match.codePointAt(0)};`;
-		}
-		return HTMLCode;
+		let result = "";
+		// Удаление Low Surrogate символов (DC00 — DFFF)
+		for (let i = 0; i < match.length; i++)
+			if (!(56320 <= match.codePointAt(i) && match.codePointAt(i) <= 57343)) result += `&#${match.codePointAt(i)};`;
+		return result;
 	};
 
 	const onDecodedChange = (event) => {
