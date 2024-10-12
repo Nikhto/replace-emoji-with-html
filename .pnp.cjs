@@ -39,6 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react-refresh", "virtual:37babd86cc070f35c60d4cc7cabb408da13bedf6fb668d8396e58073e6ce94ff29b4b77f4e6cb21ccdfb727ca724e7dc7e87200fac57f766f30de38ad39ffe13#npm:0.4.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:37babd86cc070f35c60d4cc7cabb408da13bedf6fb668d8396e58073e6ce94ff29b4b77f4e6cb21ccdfb727ca724e7dc7e87200fac57f766f30de38ad39ffe13#npm:18.2.0"],\
+            ["react-gtm-module", "npm:2.0.11"],\
             ["vite", "virtual:37babd86cc070f35c60d4cc7cabb408da13bedf6fb668d8396e58073e6ce94ff29b4b77f4e6cb21ccdfb727ca724e7dc7e87200fac57f766f30de38ad39ffe13#npm:4.4.7"],\
             ["vite-plugin-svgr", "virtual:37babd86cc070f35c60d4cc7cabb408da13bedf6fb668d8396e58073e6ce94ff29b4b77f4e6cb21ccdfb727ca724e7dc7e87200fac57f766f30de38ad39ffe13#npm:3.2.0"]\
           ],\
@@ -3671,6 +3672,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-gtm-module", [\
+        ["npm:2.0.11", {\
+          "packageLocation": "./.yarn/cache/react-gtm-module-npm-2.0.11-99adaedaa9-93b4659f0d.zip/node_modules/react-gtm-module/",\
+          "packageDependencies": [\
+            ["react-gtm-module", "npm:2.0.11"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-is", [\
         ["npm:16.13.1", {\
           "packageLocation": "./.yarn/cache/react-is-npm-16.13.1-a9b9382b4f-f7a19ac349.zip/node_modules/react-is/",\
@@ -3729,6 +3739,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-react-refresh", "virtual:37babd86cc070f35c60d4cc7cabb408da13bedf6fb668d8396e58073e6ce94ff29b4b77f4e6cb21ccdfb727ca724e7dc7e87200fac57f766f30de38ad39ffe13#npm:0.4.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:37babd86cc070f35c60d4cc7cabb408da13bedf6fb668d8396e58073e6ce94ff29b4b77f4e6cb21ccdfb727ca724e7dc7e87200fac57f766f30de38ad39ffe13#npm:18.2.0"],\
+            ["react-gtm-module", "npm:2.0.11"],\
             ["vite", "virtual:37babd86cc070f35c60d4cc7cabb408da13bedf6fb668d8396e58073e6ce94ff29b4b77f4e6cb21ccdfb727ca724e7dc7e87200fac57f766f30de38ad39ffe13#npm:4.4.7"],\
             ["vite-plugin-svgr", "virtual:37babd86cc070f35c60d4cc7cabb408da13bedf6fb668d8396e58073e6ce94ff29b4b77f4e6cb21ccdfb727ca724e7dc7e87200fac57f766f30de38ad39ffe13#npm:3.2.0"]\
           ],\

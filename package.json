@@ -14,6 +14,7 @@
 		"emojibase-regex": "^15.0.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
+		"react-gtm-module": "^2.0.11",
 		"vite-plugin-svgr": "^3.2.0"
 	},
 	"devDependencies": {
