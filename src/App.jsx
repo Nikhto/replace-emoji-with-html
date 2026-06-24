@@ -28,13 +28,13 @@ export const App = () => {
 	};
 
 	useEffect(() => {
-		let replaced = encodedText.replaceAll(/(&#\d+;)+/g, decodeEmoji);
+		let replaced = encodedText.replaceAll(/(&#\d+;)+/g, /&#(\d+);/g, (match) => lucky.filter(i => i.hexcode == parseInt(match.replace(/&#([^;]+);/, '$1')).toString(16).toUpperCase())[0].unicode);
 		setDecodedText(replaced);
 	}, [encodedText]);
 
 	useEffect(() => {
 		let globalEmojiRegex = new RegExp(EMOJI_REGEX, "g");
-		let replaced = decodedText.replaceAll(globalEmojiRegex, encodeEmoji);
+		let replaced = decodedText.replaceAll(globalEmojiRegex, (match) => `&#${parseInt(lucky.filter(i => i.unicode === match)[0].hexcode, 16)};`);
 		setEncodedText(replaced);
 	}, [decodedText]);
 
