@@ -12,7 +12,7 @@ export const App = () => {
 	const encodedRef = useRef();
 
 	const findEmoji = (codes, rest) => {
-		if (codes.length === 0) return "";
+		if (codes.length === 0 || codes == "") return "";
 		let hex = codes.reduce((acc, cur) => acc + "-" + parseInt(cur).toString(16).toUpperCase(), "").slice(1);
 		let foundEmoji = data.find((obj) => obj.hexcode === hex);
 		if (!foundEmoji && !rest) return codes.reduce((acc, cur) => acc + "&#" + parseInt(cur, 16) + ";", "");
