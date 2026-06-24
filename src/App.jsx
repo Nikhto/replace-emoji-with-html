@@ -36,7 +36,7 @@ export const App = () => {
 		let globalEmojiRegex = new RegExp(EMOJI_REGEX, "g");
 		let replaced = decodedText.replaceAll(globalEmojiRegex, (match) => {
 			let emoji = data.filter(i => i.unicode === match)[0];
-			return emoji ? `&#${parseInt(emoji.hexcode, 16)};` : `&#${match.codePointAt(0)}`;
+			return emoji ? `&#${parseInt(emoji.hexcode, 16)};` : `&#${match.codePointAt(0)};`;
 		});
 		setEncodedText(replaced);
 	}, [decodedText]);
