@@ -28,7 +28,7 @@ export const App = () => {
 	};
 
 	useEffect(() => {
-		let replaced = encodedText.replaceAll(/(&#\d+;)+/g, /&#(\d+);/g, (match) => data.filter(i => i.hexcode == parseInt(match.replace(/&#([^;]+);/, '$1')).toString(16).toUpperCase())[0].unicode);
+		let replaced = encodedText.replaceAll(/(&#\d+);/g, (match) => data.filter(i => i.hexcode == parseInt(match.replace(/&#([^;]+);/, '$1')).toString(16).toUpperCase())[0].unicode);
 		setDecodedText(replaced);
 	}, [encodedText]);
 
